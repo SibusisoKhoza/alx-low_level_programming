@@ -1,8 +1,8 @@
 #include <stdio.h>
 /**
-	*main-prints the phrase with proper grammar,
+	*main-prints a phrase
 	*
-	*Return:0 if exited succefully, non-zero otherwise.
+	*Return: 0 if exited succefully.
 	*/
 int main(void)
 {
