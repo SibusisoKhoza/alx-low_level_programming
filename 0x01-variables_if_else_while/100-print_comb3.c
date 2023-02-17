@@ -1,9 +1,9 @@
 #include <stdio.h>
 
 /**
- * main - Print combinations of two digit numbers
+ * main - Entry point
  *
- * Return: Always 0 (Success)
+ * Return: Always 0 (Succes)
  */
 int main(void)
 {
