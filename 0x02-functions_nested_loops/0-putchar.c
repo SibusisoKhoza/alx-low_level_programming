@@ -9,7 +9,7 @@ int main(void)
 {
 	char *c = "_putchar\n";
 
-	while (*sh)
+	while (*c)
 	{
 		_putchar(*c);
 		c++;
