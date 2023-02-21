@@ -1,7 +1,7 @@
 #include "main.h"
 /**
- * main - Entry point
- *
+ * _isalpha - Entry point
+ * @c : Charecter
  * Return: Always 0 (Success)
  */
 int _isalpha(int c)
