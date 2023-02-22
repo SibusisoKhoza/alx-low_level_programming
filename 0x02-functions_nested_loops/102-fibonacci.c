@@ -2,8 +2,8 @@
 
 /**
  * main - Main netry
- * 
- * 
+ *
+ *
  * Return: 0 if succesful
  */
 int main(void)
