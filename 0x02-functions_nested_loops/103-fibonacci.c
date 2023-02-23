@@ -1,25 +1,24 @@
 #include <stdio.h>
 
 /**
- * main - Main entry
+ * main - entry point
  *
- *
- * Return: 0 if succesful
+ * Return: Always 0.
  */
 int main(void)
 {
-	int i = 1, j = 2, total = 0;
-	int k;
+	int a = 1;
+	int b = 2;
+	long int sum = 0;
 
-	while (j < 4000000)
-	{
-		if (j % 2 == 0)
-			total += j;
+	do {
+		if (b % 2 == 0)
+			sum += b;
+		b += a;
+		a = b - a;
+	} while (b <= 4000000);
 
-		k = j;
-		j += i;
-		i = k;
-	}
-	printf("%d\n", total);
+	printf("%ld\n", sum);
+
 	return (0);
 }
