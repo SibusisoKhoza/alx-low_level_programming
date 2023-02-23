@@ -22,9 +22,9 @@ int main(void)
 	return (0);
 }
 /**
- * isPrime - analise if a number is prime or not
- * @n: number to check
- * Return: true if it is prime false if not
+ * isPrime - Function
+ * @n : Number
+ * Return: True or False
  */
 int isPrime(long int n)
 {
@@ -51,9 +51,9 @@ int isPrime(long int n)
 	}
 }
 /**
- * biggestFactor - returns the biggest prime factor of a number
- * @a: number to check
- * Return: biggest factor
+ * biggestFactor - Function
+ * @a : Number
+ * Return: Factor
  */
 long int biggestFactor(long int a)
 {
