@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
  * swap_int - takes two pointers and swap their values
  * @a : First value
