@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+/**
+ * main - Main function
+ * Return: 0 if success
+ */
+
 int main(void)
 {
   int n;
