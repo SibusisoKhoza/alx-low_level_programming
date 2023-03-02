@@ -43,8 +43,8 @@ void print_number(int n)
 		{
 			d = -d;
 			if (i == 0)
-				putchar(45);
+				_putchar(45);
 		}
-		putchar(48 + d);
+		_putchar(48 + d);
 	}
 }
