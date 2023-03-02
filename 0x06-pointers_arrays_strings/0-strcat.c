@@ -3,7 +3,7 @@
  * _strcat - Concatenate two strings
  * @dest : Destination
  * @src : Source
- * Return : 0 if success
+ * Return: 0 if success
  */
 char *_strcat(char *dest, char *src)
 {
