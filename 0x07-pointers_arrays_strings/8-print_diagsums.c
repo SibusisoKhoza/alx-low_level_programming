@@ -1,25 +1,26 @@
 #include "main.h"
 #include <stdio.h>
+
 /**
  * print_diagsums - Prints sum of diagonals of the matrix
  * @a : Pointer an int
- * @size : Size of the array
- * Return: Rertuns void
+	@@ -9,19 +8,18 @@
  */
 void print_diagsums(int *a, int size)
 {
-	int i, j, a = 0, b = 0, r1, r2;
+	int sum0, sum1;
+	int row, col;
 
-	for (i = 0; i <= (size - 1); i++)
+	sum0 = 0;
+	sum1 = 0;
+	row = 0;
+	col = 0;
+	while (row < size)
 	{
-		r1 =  (size + 1) * i;
-		a = a + *(a + r1);
+		sum0 += *(a + row  * size + col);
+		sum1 += *(a + row  * size + (size - 1 - col));
+		col++;
+		row++;
 	}
-
-	for (j = 1; j <= size; j++)
-	{
-		r2 = (size - 1) * j;
-		b = b + *(a + r2);
-	}
-	printf("%d, %d\n", a, b);
+	printf("%d, %d\n", sum0, sum1);
 }
