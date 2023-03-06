@@ -2,38 +2,43 @@
 #include <stdio.h>
 
 /**
- * _strstr - Function to find a a location of substring
+ * _strstr - Locate string
  * @haystack : String
  * @needle : String
  * Return: A string
  */
 char *_strstr(char *haystack, char *needle)
 {
-	unsigned int i, j, check;
-
-	i = 0;
-	j = 0;
-	done = 0;
-	while (haystack[i] != '\0')
+	while (*haystack)
 	{
-		if (needle[j] == haystack[i])
+		if ((*haystack == *needle && coincidence(haystack, needle) == 1) || !*needle)
 		{
-			done = 1;
-			j++;
-
+			return (haystack);
 		}
 		else
 		{
-			done = 0;
-			j = 0;
+			haystack++;
 		}
-
-		if (needle[j] == '\0' && check == 1)
-			return ((haystack + i - j + 1));
-		else if (needle[j] == '\0' && check == 0)
-			return (haystack);
-		i++;
+	}
+	return (0);
+}
+/**
+ * check - Check if str a in b
+ * @a : source String
+ * @b : String
+ *
+ * Return: Rerun
+ */
+int check(char *a, char *b)
+{
+	while (*b && *b == *a)
+	{
+		b++;
+		a++;
 	}
 
-	return (NULL);
+	if (*b == '\0')
+		return (1);
+	else
+		return (0);
 }
