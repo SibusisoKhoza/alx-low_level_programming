@@ -1,5 +1,7 @@
 #include "main.h"
 
+int sqrt(int a, int b);
+
 /**
  * sqrt - Evaluantes 1 to n
  * @a : Number
