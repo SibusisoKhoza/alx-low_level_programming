@@ -1,8 +1,9 @@
 #include "main.h"
+
 /**
- * length - lenth
- * @s: string
- * Return: 0
+ * length - Function to find the length
+ * @s : String
+ * Return: 0 if success
  */
 int length(char *s)
 {
@@ -12,11 +13,11 @@ int length(char *s)
 		return (1 + length(s + 1));
 }
 /**
- * check - check
- * @s: string
- * @l: length
- * @i: index
- * Return: return 0
+ * check - Function to check
+ * @s : String
+ * @l : Length
+ * @i: Array index
+ * Return: 0 if success
  */
 int check(char *s, int l, int i)
 {
@@ -27,9 +28,9 @@ int check(char *s, int l, int i)
 	return (0);
 }
 /**
- * is_palindrome - palindrome
- * @s: string
- * Return: 1
+ * is_palindrome - Function to check if palindrome
+ * @s : String
+ * Return: 1 if success
  */
 int is_palindrome(char *s)
 {
