@@ -3,7 +3,7 @@
 int _sqrt(int a, int b);
 
 /**
- * sqrt - Evaluantes 1 to n
+ * _sqrt - Evaluantes 1 to n
  * @a : Number
  * @b : Number of iterations
  * Return: On success
