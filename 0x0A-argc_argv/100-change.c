@@ -20,7 +20,7 @@ int isInt(char *s)
 }
 
 /**
- * main - prints the minimum number of coins to make change for an amount of money
+ * main - prints the minimum number of coins
  * @argc: arguement count
  * @argv: arguement vector.
  * Return: Always 0.(Success)
@@ -30,17 +30,17 @@ int main(int argc, char *argv[])
 	int i = 0, coinUsed = 0, coin = 0;
 	int coins[] = {25, 10, 5, 2, 1};
 
-	if(argc != 2)
+	if (argc != 2)
 	{
 		printf("Error\n");
 		return (1);
 	}
-	if(isInt(argv[1]))
+	if (isInt(argv[1]))
 	{
 		i = atoi(argv[1]);
-		while(i > 0 && coin <=4)
+		while (i > 0 && coin <=4)
 		{
-			if(i >= coins[coin])
+			if (i >= coins[coin])
 			{
 				i -= coins[coin];
 				coinUsed++;
