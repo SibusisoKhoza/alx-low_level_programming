@@ -35,3 +35,4 @@ int main(void)
 	}
 	print_tab(tab);
 	return (0);
+}
