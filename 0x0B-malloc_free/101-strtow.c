@@ -1,48 +1,67 @@
-#include <stdio.h>
-#define TRUE 1
-
+#include "main.h"
+#include <stdlib.h>
 /**
- * a function that splits a string into words
- * function returns a pointer to an array of strings (words
- * Each element of this array should contain a single word, null-terminated
- * The last element of the returned array should be NULL
- * Words are separated by spaces
- * Returns NULL if str == NULL or str == ""
- * Prototype: char **strtow(char *str);
- * Return: char
+ * strtow - split a string into words
+ * @str: the string
+ *
+ * Return: double pointer
  */
-
 char **strtow(char *str)
 {
-	char n=0,i,j=0;
-	
-	for(i=0;TRUE;i++)
+	int x = 1, i, j, k, length;
+	char **strtow;
+
+	if (str == NULL || *str == '\0')
+		return (NULL);
+	for (i = 1; str[i] != '\0'; i++)
 	{
-		if(strtow[i]!=' '){
-			str[n][j++]=str[i];
+		if (str[i] == ' ')
+		{
+			x++;
 		}
-		else{
-			str[n][j++]='\0';
-			n++;
-			j=0;
-		}
-		if(strtow[i]=='\0')
-		    break;
 	}
-	return n;
-	
-}
-int main()
-{
-	int n; 
-	int i; 
-	char str[]="This is Kevin";
-	char strtow
-	
-	n=**strtow(str,arr);
-	
-	for(i=0;i<=n;i++)
-		printf("%s\n",arr[i]);
-	
-	return 0;
+	x++;
+	strtow = malloc(x);
+	if (strtow == NULL)
+		return (NULL);
+	j = 0;
+	i = 0;
+	while (i < x)
+	{
+		length = 0;
+		while (str[j]  != ' ' && str[j] != '\0')
+		{
+			length++;
+			j++;
+		}
+		if (length != 0)
+		{
+			strtow[i] = malloc(length + 1);
+			if (strtow[i] == NULL)
+			{
+				for (; i >= 0; i--)
+					free(strtow[i]);
+				free(strtow);
+				return (NULL);
+			}
+			i++;
+		}
+		j++;
+	}
+	j = 0;
+	for (i = 0; i < x; i++)
+	{
+		k = 0;
+		while (*str != ' ' && *str != '\0')
+		{
+			strtow[i][k] = *str;
+			str++;
+			k++;
+		}
+		strtow[i][k] = '\0';
+		while (*str == ' ')
+			str++;
+		i++;
+	}
+	return (strtow);
 }
