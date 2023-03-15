@@ -1,38 +1,48 @@
-#include "main.h"
 #include <stdio.h>
-#include <stdlib.h>
+#define TRUE 1
 
 /**
- * print_tab - Prints an array of string
- * @tab: The array to print
- *
- * Return: nothing
+ * a function that splits a string into words
+ * function returns a pointer to an array of strings (words
+ * Each element of this array should contain a single word, null-terminated
+ * The last element of the returned array should be NULL
+ * Words are separated by spaces
+ * Returns NULL if str == NULL or str == ""
+ * Prototype: char **strtow(char *str);
+ * Return: char
  */
-void print_tab(char **tab)
-{
-	int i;
 
-	for (i = 0; tab[i] != NULL; ++i)
+char **strtow(char *str)
+{
+	char n=0,i,j=0;
+	
+	for(i=0;TRUE;i++)
 	{
-		printf("%s\n", tab[i]);
+		if(strtow[i]!=' '){
+			str[n][j++]=str[i];
+		}
+		else{
+			str[n][j++]='\0';
+			n++;
+			j=0;
+		}
+		if(strtow[i]=='\0')
+		    break;
 	}
+	return n;
+	
 }
-
-/**
- * main - check the code for ALX School students.
- *
- * Return: 1 if an error occurred, 0 otherwise
- */
-int main(void)
+int main()
 {
-	char **tab;
-
-	tab = strtoq("      ALX School         #cisfun      ");
-	if (tab == NULL)
-	{
-		printf("Failed\n");
-		return (1);
-	}
-	print_tab(tab);
-	return (0);
+	int n; 
+	int i; 
+	char str[]="This is Kevin";
+	char strtow
+	
+	n=**strtow(str,arr);
+	
+	for(i=0;i<=n;i++)
+		printf("%s\n",arr[i]);
+	
+	return 0;
 }
