@@ -2,18 +2,18 @@
 #include <stdlib.h>
 
 /**
- * free_listint2 - function that frees listint_t list
- * @head: double pointer to the beginning of the linked list
+ * free_listint2 - adds a new node at the end of a listint_t list.
+ * @head: pointer to pointer of the 1st elem
  */
 
 void free_listint2(listint_t **head)
 {
-	listint_t *hold;
+	listint_t *current;
 
-	while (head && *head)
+	while (head != NULL && *head != NULL)
 	{
-		hold = *head;
-		*head = (**head).next;
-		free(hold);
+		current = *head;
+		*head = (*current).next;
+		free(current);
 	}
 }
