@@ -1,17 +1,19 @@
 #include "lists.h"
 
 /**
- * listint_len - return # of elements
+ * listint_len - eturns the number of elements in a linked listint_t
  * @h: pointer to the first element
  * Return: number of elements
  */
 
 size_t listint_len(const listint_t *h)
 {
-	int i;
+    size_t i = 0;
 
-	for (i = 0; h; h = (*h).next, i++)
-		;
+    while (h != NULL) {
+        h = h->next;
+        i++;
+    }
 
-	return (i);
+    return (i);
 }
