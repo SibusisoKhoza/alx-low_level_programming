@@ -2,18 +2,18 @@
 #include <stdlib.h>
 
 /**
- * free_listint - function that frees listint_t list
- * @head: pointer to the beginning of the linked list
+ * free_listint - frees a listint_t list.
+ * @head: pointer to the first address
  */
 
 void free_listint(listint_t *head)
 {
-	listint_t *hold;
+	listint_t *current;
 
-	while (head)
+	while (head != NULL)
 	{
-		hold = head;
-		head = (*head).next;
-		free(hold);
+		current = head;
+		head = head->next;
+		free(current);
 	}
 }
