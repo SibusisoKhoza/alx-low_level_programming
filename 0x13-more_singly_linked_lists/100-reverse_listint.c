@@ -6,21 +6,20 @@
  *
  * Return: pointer to the reversed
  */
-
-listint_t *reverse_linked_list(listint_t **head)
+listint_t *reverse_listint(listint_t **h)
 {
-	listint_t *temp1, *temp2;
+	listint_t *tmp2, *tmp1;
 
-	if (!head || !(*head))
+	if (!h || !(*h))
 		return (NULL);
-	temp1 = (*head)->next;
-	(*head)->next = NULL;
-	while (temp1)
+	tmp1 = (*h)->next;
+	(*h)->next = NULL;
+	while (tmp1)
 	{
-		temp2 = *head;
-		*head = temp1;
-		temp1 = (*head)->next;
-		(*head)->next = temp2;
+		tmp2 = *h;
+		*h = tmp1;
+		tmp1 = (*h)->next;
+		(*h)->next = tmp2;
 	}
-	return (*head);
+	return (*h);
 }
