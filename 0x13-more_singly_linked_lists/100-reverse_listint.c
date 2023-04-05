@@ -6,20 +6,19 @@
  *
  * Return: pointer to the reversed
  */
-listint_t *reverse_listint(listint_t **h)
+listint_t *reverse_listint(listint_t **head)
 {
-	listint_t *tmp2, *tmp1;
+	listint_t *prev = NULL, *current = *head, *next;
 
-	if (!h || !(*h))
-		return (NULL);
-	tmp1 = (*h)->next;
-	(*h)->next = NULL;
-	while (tmp1)
+	while (current != NULL)
 	{
-		tmp2 = *h;
-		*h = tmp1;
-		tmp1 = (*h)->next;
-		(*h)->next = tmp2;
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
 	}
-	return (*h);
+
+	*head = prev;
+
+	return prev;
 }
