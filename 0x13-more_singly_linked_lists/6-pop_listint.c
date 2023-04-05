@@ -12,7 +12,8 @@ int pop_listint(listint_t **head)
 	listint_t *current;
 	int n;
 
-	if (head && *head) {
+	if (head && *head)
+	{
 		current = *head;
 		n = (*current).n;
 		*head = (*current).next;
