@@ -3,26 +3,28 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-ssize_t read_textfile(const char *file_name, size_t num_letters) {
+ssize_t read_textfile(const char *filename, size_t letters);
+
+ssize_t read_textfile(const char *filename, size_t letters) {
     int file_descriptor, read_count, write_count;
     char *buffer;
 
-    buffer = (char*) malloc(num_letters);
+    buffer = (char*) malloc(letters);
     if (buffer == NULL) {
         return 0;
     }
 
-    if (file_name == NULL) {
+    if (filename == NULL) {
         return 0;
     }
 
-    file_descriptor = open(file_name, O_RDONLY);
+    file_descriptor = open(filename, O_RDONLY);
     if (file_descriptor == -1) {
         free(buffer);
         return 0;
     }
 
-    read_count = read(file_descriptor, buffer, num_letters);
+    read_count = read(file_descriptor, buffer, letters);
     if (read_count == -1) {
         free(buffer);
         return 0;
