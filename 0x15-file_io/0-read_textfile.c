@@ -38,18 +38,8 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 
 	read_count = read(file_descriptor, buffer, letters);
-	if (read_count == -1)
-	{
-		free(buffer);
-		return (0);
-	}
 
-	write_count = write(STDOUT_FILENO, buffer, read_count);
-	if (write_count == -1)
-	{
-		free(buffer);
-		return (0);
-	}
+	write_count = write(STDOUT_FILENO, buffer, read_count);	
 
 	close(file_descriptor);
 	free(buffer);
