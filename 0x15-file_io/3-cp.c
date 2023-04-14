@@ -43,10 +43,7 @@ int main(int argc, char *argv[])
 	{
 		write_result = write(fd_to, buf, read_result);
 		if (write_result != read_result)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-			exit(99);
-		}
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
 	}
 
 	if (read_result == -1)
