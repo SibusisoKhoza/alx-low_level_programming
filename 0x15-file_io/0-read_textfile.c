@@ -12,8 +12,6 @@
  * Return: number of letters
  */
 
-ssize_t read_textfile(const char *filename, size_t letters);
-
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int file_descriptor, read_count, write_count;
