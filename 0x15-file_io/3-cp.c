@@ -4,9 +4,7 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-
 #define BUF_SIZE 1024
-
 /**
  * main - copies the content of a file to another file
  * @argc: argument count
