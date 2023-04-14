@@ -31,10 +31,7 @@ int main(int argc, char *argv[])
 
 	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, mode);
 	if (fd_to == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		exit(99);
-	}
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
 
 	while ((read_result = read(fd_from, buf, BUF_SIZE)) > 0)
 	{
