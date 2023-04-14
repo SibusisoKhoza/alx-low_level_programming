@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include "main.h"
 
 /**
  * read_textfile - Function readfile
