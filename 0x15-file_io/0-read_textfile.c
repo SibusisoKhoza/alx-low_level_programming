@@ -1,50 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include "main.h"
 
 /**
- * read_textfile - reads a text file and prints it to the POSIX standard output
- * @filename: name of the file to read
- * @letters: number of letters to read and print
- * Return: number of letters read and printed, 0 on failure
+ * read_textfile - Function readfile
+ * @filename: Pointer
+ * @letters: Letters size
+ * Description: function that reads a text file and prints it
+ * to the POSIX standard output.
+ * Return: number of letters
  */
+
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-    int fd;
-    ssize_t nread, nwritten;
-    char *buf;
+	int file_descriptor, read_count, write_count;
+	char *buffer;
 
-    if (filename == NULL)
-        return (0);
+	buffer = (char *) malloc(letters);
+	if (buffer == NULL)
+	{
+		return (0);
+	}
 
-    buf = malloc(sizeof(char) * letters);
-    if (buf == NULL)
-        return (0);
+	if (filename == NULL)
+	{
+		return (0);
+	}
 
-    fd = open(filename, O_RDONLY);
-    if (fd == -1)
-    {
-        free(buf);
-        return (0);
-    }
+	file_descriptor = open(filename, O_RDONLY);
+	if (file_descriptor == -1)
+	{
+		free(buffer);
+		return (0);
+	}
 
-    nread = read(fd, buf, letters);
-    if (nread == -1)
-    {
-        free(buf);
-        close(fd);
-        return (0);
-    }
 
-    nwritten = write(STDOUT_FILENO, buf, nread);
-    if (nwritten == -1 || nwritten != nread)
-    {
-        free(buf);
-        close(fd);
-        return (0);
-    }
+	read_count = read(file_descriptor, buffer, letters);
+	if (read_count == -1)
+	{
+		free(buffer);
+		return (0);
+	}
 
-    free(buf);
-    close(fd);
+	write_count = write(STDOUT_FILENO, buffer, read_count);
+	if (write_count == -1)
+	{
+		free(buffer);
+		return (0);
+	}
 
-    return (nwritten);
+	close(file_descriptor);
+	free(buffer);
+
+	return (write_count);
 }
