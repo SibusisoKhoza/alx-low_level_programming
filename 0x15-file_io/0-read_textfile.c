@@ -3,7 +3,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-ssize_t readTextFile(const char *file_name, size_t num_letters) {
+ssize_t read_textfile(const char *file_name, size_t num_letters) {
     int file_descriptor, read_count, write_count;
     char *buffer;
 
