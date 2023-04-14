@@ -1,41 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "main.h"
+#include <fcntl.h>
+#include <unistd.h>
 
-/**
- * read_textfile - that reads a text file and prints
- * @filename: variable pointer
- * @letters: size letters
- * Description: Write a function that reads a text file and prints it
- * to the POSIX standard output.
- * Return: the actual number of letters it could read and print, 0 otherwise
- */
+ssize_t readTextFile(const char *file_name, size_t num_letters) {
+    int file_descriptor, read_count, write_count;
+    char *buffer;
 
-ssize_t read_textfile(const char *filename, size_t letters)
-{
-	ssize_t file, let, w;
-	char *text;
+    buffer = (char*) malloc(num_letters);
+    if (buffer == NULL) {
+        return 0;
+    }
 
-	text = malloc(letters);
-	if (text == NULL)
-		return (0);
+    if (file_name == NULL) {
+        return 0;
+    }
 
-	if (filename == NULL)
-		return (0);
+    file_descriptor = open(file_name, O_RDONLY);
+    if (file_descriptor == -1) {
+        free(buffer);
+        return 0;
+    }
 
-	file = open(filename, O_RDONLY);
+    read_count = read(file_descriptor, buffer, num_letters);
+    if (read_count == -1) {
+        free(buffer);
+        return 0;
+    }
 
-	if (file == -1)
-	{
-		free(text);
-		return (0);
-	}
+    write_count = write(STDOUT_FILENO, buffer, read_count);
+    if (write_count == -1) {
+        free(buffer);
+        return 0;
+    }
 
-	let = read(file, text, letters);
+    close(file_descriptor);
+    free(buffer);
 
-	w = write(STDOUT_FILENO, text, let);
-
-	close(file);
-
-	return (w);
+    return write_count;
 }
