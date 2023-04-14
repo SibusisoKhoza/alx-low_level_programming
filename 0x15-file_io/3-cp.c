@@ -1,55 +1,71 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
-#define MAX_LINE_LENGTH 40
+#define BUF_SIZE 1024
 
-int main(int argc, char *argv[]) {
-    FILE *input_file, *output_file;
-    char input_buffer[MAX_LINE_LENGTH + 2], output_buffer[MAX_LINE_LENGTH + 2];
-    size_t input_length;
+/**
+ * main - copies the content of a file to another file
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: 0 on success
+ */
+int main(int argc, char *argv[])
+{
+	int fd_from, fd_to, read_result, write_result;
+	char buf[BUF_SIZE];
+	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 
-    if (argc != 3) {
-        fprintf(stderr, "Usage: %s input_file output_file\n", argv[0]);
-        exit(EXIT_FAILURE);
-    }
+	if (argc != 3)
+	{
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(97);
+	}
 
-    input_file = fopen(argv[1], "r");
-    if (input_file == NULL) {
-        fprintf(stderr, "Error: Can't open input file %s\n", argv[1]);
-        exit(EXIT_FAILURE);
-    }
+	fd_from = open(argv[1], O_RDONLY);
+	if (fd_from == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
+	}
 
-    output_file = fopen(argv[2], "w");
-    if (output_file == NULL) {
-        fprintf(stderr, "Error: Can't create output file %s\n", argv[2]);
-        fclose(input_file);
-        exit(EXIT_FAILURE);
-    }
+	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, mode);
+	if (fd_to == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		exit(99);
+	}
 
-    while (fgets(input_buffer, sizeof(input_buffer), input_file)) {
-        input_length = strlen(input_buffer);
+	while ((read_result = read(fd_from, buf, BUF_SIZE)) > 0)
+	{
+		write_result = write(fd_to, buf, read_result);
+		if (write_result != read_result)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+			exit(99);
+		}
+	}
 
-        if (input_buffer[input_length - 1] != '\n') {
-            fprintf(stderr, "Error: Line too long in input file\n");
-            fclose(input_file);
-            fclose(output_file);
-            exit(EXIT_FAILURE);
-        }
+	if (read_result == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
+	}
 
-        if (input_length > MAX_LINE_LENGTH + 1) {
-            input_buffer[MAX_LINE_LENGTH] = '\n';
-            input_buffer[MAX_LINE_LENGTH + 1] = '\0';
-        }
+	if (close(fd_from) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
+		exit(100);
+	}
 
-        strncpy(output_buffer, input_buffer, sizeof(output_buffer) - 1);
-        output_buffer[sizeof(output_buffer) - 1] = '\0';
+	if (close(fd_to) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
+		exit(100);
+	}
 
-        fprintf(output_file, "%s", output_buffer);
-    }
-
-    fclose(input_file);
-    fclose(output_file);
-
-    return EXIT_SUCCESS;
+	return (0);
 }
