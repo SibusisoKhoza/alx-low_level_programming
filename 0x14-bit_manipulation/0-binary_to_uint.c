@@ -5,17 +5,25 @@
  * Return: 0
  */
 unsigned int binary_to_uint(const char *b) {
-    if (b == NULL) {
-        return 0; // return 0 if input string is NULL
+    unsigned int result = 0;
+    int exponent = 1, index = 0;
+
+    if (!b)
+        return 0;
+
+    while (b[index + 1])
+    {
+        if (b[index] != '0' && b[index] != '1')
+            return 0;
+        index++;
     }
 
-    unsigned int decimal = 0;
-    for (int i = 0; b[i] != '\0'; i++) {
-        if (b[i] != '0' && b[i] != '1') {
-            return 0; // return 0 if any char in input string is not 0 or 1
-        }
-        decimal = (decimal << 1) + (b[i] - '0'); // convert binary digit to decimal equivalent
+    while (index >= 0)
+    {
+        result += ((b[index] - '0') * exponent);
+        exponent *= 2;
+        index--;
     }
 
-    return decimal; // return decimal equivalent of binary input string
+    return result;
 }
