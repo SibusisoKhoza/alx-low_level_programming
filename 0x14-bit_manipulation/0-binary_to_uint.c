@@ -8,12 +8,12 @@ unsigned int binary_to_uint(const char *b)
 {
 	unsigned int result = 0;
 	int exponent = 1, index = 0;
-	
+
 	if (!b)
 	{
 		return (0);
 	}
-	
+
 	while (b[index + 1])
 	{
 		if (b[index] != '0' && b[index] != '1')
@@ -27,6 +27,6 @@ unsigned int binary_to_uint(const char *b)
 		exponent *= 2;
 		index--;
 	}
-	
+
 	return (result);
 }
