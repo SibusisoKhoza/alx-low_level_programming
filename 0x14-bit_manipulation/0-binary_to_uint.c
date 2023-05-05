@@ -4,7 +4,8 @@
  * @b: const char
  * Return: 0
  */
-unsigned int binary_to_uint(const char *b) {
+unsigned int binary_to_uint(const char *b)
+{
 	unsigned int result = 0;
 	int exponent = 1, index = 0;
 	
